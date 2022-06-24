@@ -1,0 +1,1 @@
+prompt("Digite seu nome para entrar no Bate-papo mais famoso do Brasil!!")
