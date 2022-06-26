@@ -6,14 +6,13 @@ inicioChat();
 
 function inicioChat(){
     enviarNome();
-
+    setInterval (continuarOnline, 5000)
 }
-
 
 console.log(inicioChat);
 
 function enviarNome(){
-    const usuario = prompt("Digite o seu nome de usuário:");
+    usuario = prompt("Digite o seu nome de usuário:");
     const post = axios.post(`${servidor}/participants`, {name: usuario})
     post.then(buscarDados);
     post.catch(reiniciarTudo);
@@ -109,8 +108,9 @@ function enviarMsg(){
         text: input,
         type: "message"
     }
-    if (msg){
 
+    console.log(msg);
+    if (msg){
         document.querySelector(".input-msg").value = "";
         const promessa = axios.post(`${servidor}/messages`, msg);
         promessa.then(buscarDados);
