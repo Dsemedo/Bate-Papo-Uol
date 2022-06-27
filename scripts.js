@@ -6,7 +6,9 @@ inicioChat();
 
 function inicioChat(){
     enviarNome();
-    setInterval (continuarOnline, 5000)
+
+    setInterval (continuarOnline, 5000);
+    setInterval (carregarMsgs, 5000);
 }
 
 console.log(inicioChat);
@@ -55,7 +57,7 @@ function carregarMsgs(resposta){
         let adicionarMsg = document.querySelector(".conteudo")
         if (type == "status"){
             adicionarMsg.innerHTML += `
-            <div class="mensagens status">
+            <li class="mensagens status">
             <span class= "horario">
             (${time})
             </span>
@@ -67,11 +69,11 @@ function carregarMsgs(resposta){
                     ${text}
                     </span>
                     </div>
-            </div>`     
+            </li>`     
         } else if (type == "message"){
             
             adicionarMsg.innerHTML += `
-            <div class="mensagens todos">
+            <li class="mensagens todos">
             <span class= "horario">
             (${time})
             </span>
@@ -80,11 +82,11 @@ function carregarMsgs(resposta){
                     <strong>${from}</strong> para ${to} ${text}
                     </span>
                     </div>
-                </div>  ` 
+                </li>  ` 
         }else if (type == "private_message") {
             
             adicionarMsg.innerHTML += `
-            <div class="mensagens private">
+            <li class="mensagens private">
                     <span class= "horario">
                     (${time})
                     </span>
@@ -93,9 +95,10 @@ function carregarMsgs(resposta){
                     <strong>${from}</strong> para ${to} ${text}
                     </span>
                     </div>
-                </div>  ` 
+                </li>  ` 
         }
     }
+
 }
 
 console.log(carregarMsgs)
@@ -120,7 +123,12 @@ function enviarMsg(){
 }
 
 function deuRuim(){
-    alert("Deu ruim")
+    alert("Algo está errado")
 }
 
-console.log(enviarMsg);
+function rolarMsg(){
+    const msgs = document.querySelector(".conteudo li:last:child");
+    msgs.scrollIntoView();
+}
+
+console.log(rolarMsg);
